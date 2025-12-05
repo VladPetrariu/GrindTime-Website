@@ -1,0 +1,10 @@
+/* Custom styles moved here so they can be included in a Tailwind build pipeline */
+.screenshot-card {
+  opacity: 0;
+  transform: translateY(40px) rotate(-10deg);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.screenshot-card.in-view {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GrindTime – Turn Focus Into a Habit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom styles moved to styles.css for Tailwind build pipeline -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="bg-slate-950 text-slate-50">
+  <div class="min-h-screen flex flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <!-- NAVBAR -->
+    <nav class="max-w-6xl mx-auto w-full flex items-center justify-between px-4 py-6">
+        <div class="flex items-center">
+         <span class="font-semibold tracking-tight text-lg">GrindTime</span>
+        </div>
+
+      <div class="hidden sm:flex items-center gap-6 text-sm text-slate-300">
+        <a href="#features" class="hover:text-emerald-300 transition">Features</a>
+        <a href="#screenshots" class="hover:text-emerald-300 transition">Screenshots</a>
+        <a href="#faq" class="hover:text-emerald-300 transition">FAQ</a>
+      </div>
+      <a href="#download" class="text-sm px-4 py-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 hover:bg-emerald-500/20 transition">
+        Get the app
+      </a>
+    </nav>
+
+    <!-- HERO -->
+    <main class="flex-1">
+      <section class="max-w-6xl mx-auto px-4 pt-4 pb-20 grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-400/30 bg-emerald-500/5 text-xs uppercase tracking-[0.2em] text-emerald-300">
+            Focus • Track • Improve
+          </span>
+          <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight">
+            Turn your <span class="text-emerald-400">grind time</span> into real progress.
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base max-w-xl">
+            GrindTime tracks your deep-work sessions, visualizes your progress, and keeps you accountable with clean analytics and social features.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <!-- Replace href with real App Store link -->
+            <a id="download" href="https://apps.apple.com" target="_blank"
+               class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold shadow-lg shadow-emerald-500/30">
+              <span>Download on the App Store</span>
+            </a>
+            <a href="#waitlist" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-700 text-sm text-slate-200 hover:bg-slate-900/60">
+              Join early access
+            </a>
+          </div>
+          <div class="flex flex-wrap gap-6 text-xs text-slate-400">
+            <div>
+              <div class="text-emerald-300 font-semibold text-sm">Deep-focus timer</div>
+              Tracks real grind sessions, not just screen time.
+            </div>
+            <div>
+              <div class="text-emerald-300 font-semibold text-sm">Progress heatmaps</div>
+              See your consistency over weeks & months.
+            </div>
+          </div>
+        </div>
+
+        <!-- APP MOCKUP -->
+        <div class="relative">
+          <div class="absolute -top-8 -left-4 h-40 w-40 bg-emerald-500/10 blur-3xl rounded-full"></div>
+          <div class="absolute -bottom-10 -right-4 h-40 w-40 bg-sky-500/10 blur-3xl rounded-full"></div>
+          <div class="relative mx-auto max-w-xs rounded-[2.5rem] border border-slate-700 bg-slate-900/80 shadow-2xl shadow-emerald-500/20 p-3">
+            <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex flex-col">
+              <!-- Replace src with real screenshot -->
+              <img src="/images/grindtime-profile.png" alt="GrindTime profile screen"
+                    class="h-full w-full object-cover" />
+
+            </div>
+          </div>
+          <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-64 rounded-2xl bg-slate-900/90 border border-slate-700/80 px-4 py-3 backdrop-blur">
+            <p class="text-xs text-slate-300">
+              “I finally know where my time goes. GrindTime made my study sessions actually measurable.”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section id="features" class="max-w-6xl mx-auto px-4 pb-16">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-6">Built for serious students, creators & builders.</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+            <div class="text-emerald-300 text-sm font-semibold mb-2">Smart session tracking</div>
+            <p class="text-slate-300 text-sm">Start a grind, lock in, and let GrindTime handle the data. No complicated setup.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+            <div class="text-emerald-300 text-sm font-semibold mb-2">Profile & feed</div>
+            <p class="text-slate-300 text-sm">Showcase your grind streak, compare with friends, and keep each other accountable.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+            <div class="text-emerald-300 text-sm font-semibold mb-2">Clean analytics</div>
+            <p class="text-slate-300 text-sm">Heatmaps, totals, and weekly averages so you can see real improvement over time.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREENSHOT GALLERY -->
+      <section id="screenshots" class="max-w-6xl mx-auto px-4 pb-20">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl sm:text-2xl font-semibold">Inside the app</h2>
+          <span class="text-xs text-slate-400">Swipe through the UI</span>
+        </div>
+      <div class="grid md:grid-cols-3 gap-4">
+  <div class="screenshot-card rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80">
+    <img src="/images/grindtime-profile.png" alt="GrindTime profile" class="w-full h-full object-cover">
+  </div>
+  <div class="screenshot-card rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80">
+    <img src="/images/grindtime-feed.png" alt="GrindTime feed" class="w-full h-full object-cover">
+  </div>
+  <div class="screenshot-card rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80">
+    <img src="/images/grindtime-heatmap.png" alt="GrindTime stats" class="w-full h-full object-cover">
+  </div>
+</div>
+
+      </section>
+
+      <!-- FAQ + WAITLIST -->
+      <section id="faq" class="max-w-3xl mx-auto px-4 pb-20">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Frequently asked questions</h2>
+        <div class="space-y-4 text-sm text-slate-300">
+          <details class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3">
+            <summary class="cursor-pointer font-medium text-slate-100">Is GrindTime free?</summary>
+            <p class="mt-2 text-sm text-slate-300">Yes. Core tracking is free. We’re working on an optional premium tier with extra analytics and social features.</p>
+          </details>
+          <details class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3">
+            <summary class="cursor-pointer font-medium text-slate-100">Which platforms are supported?</summary>
+            <p class="mt-2 text-sm text-slate-300">GrindTime is being built for iOS first. Other platforms may follow based on demand.</p>
+          </details>
+        </div>
+
+        <!-- WAITLIST -->
+        <div id="waitlist" class="mt-10 rounded-2xl border border-emerald-500/40 bg-emerald-500/5 px-5 py-6">
+          <h3 class="text-lg font-semibold mb-2">Get notified when we launch.</h3>
+          <p class="text-sm text-slate-200 mb-4">Drop your email and be first in line for new features, beta invites, and launch updates.</p>
+          <form class="flex flex-col sm:flex-row gap-3">
+            <input type="email" required placeholder="you@example.com"
+                   class="flex-1 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-700 text-sm outline-none focus:border-emerald-400">
+            <button type="submit"
+                    class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold">
+              Join waitlist
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 py-6 mt-auto">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <span>© <span id="year"></span> GrindTime. All rights reserved.</span>
+        <span>Built for people who actually show up to grind.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  document.querySelectorAll(".screenshot-card").forEach((card) => {
+    observer.observe(card);
+  });
+</script>
+</body>
+</html>
