@@ -84,7 +84,7 @@
 
       <!-- FEATURES -->
       <section id="features" class="max-w-6xl mx-auto px-4 pb-16">
-        <h2 class="text-xl sm:text-2xl font-semibold mb-6">Built for serious students, creators & builders.</h2>
+        <h2 class="text-xl sm:text-2xl font-semibold mb-6"> Built for serious students, competitors, & academic weapons.</h2>
         <div class="grid md:grid-cols-3 gap-6">
           <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
             <div class="text-emerald-300 text-sm font-semibold mb-2">Smart session tracking</div>
@@ -108,7 +108,7 @@
           <span class="text-xs text-slate-400">Swipe through the UI</span>
         </div>
         <!-- Phone mockups: wider spacing and captions. Replace the <img> src inside each .phone-mockup when ready -->
-        <div class="flex items-start justify-center gap-12 mb-6 max-w-4xl mx-auto px-4">
+  <div id="phone-group" class="flex items-start justify-center gap-10 md:gap-16 lg:gap-24 mb-6 max-w-5xl mx-auto px-4">
           <div class="flex flex-col items-center">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center">
@@ -133,19 +133,9 @@
                 <img src="/images/grindtime-heatmap.png" alt="Placeholder 3" class="w-full h-full object-cover replaceable" data-slot="3" />
               </div>
             </div>
-            <div class="phone-caption mt-3 text-center text-sm text-slate-300">Forced Study Photots</div>
+            <div class="phone-caption mt-3 text-center text-sm text-slate-300">Forced Study Photos</div>
           </div>
         </div>
-      <div class="grid md:grid-cols-3 gap-4">
-  <div class="screenshot-card rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80">
-    <img src="/images/grindtime-profile.png" alt="GrindTime profile" class="w-full h-full object-cover">
-  </div>
-  <div class="screenshot-card rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80">
-    <img src="/images/grindtime-feed.png" alt="GrindTime feed" class="w-full h-full object-cover">
-  </div>
-  <div class="screenshot-card rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80">
-    <img src="/images/grindtime-heatmap.png" alt="GrindTime stats" class="w-full h-full object-cover">
-  </div>
   </section>
 
       <!-- FAQ + WAITLIST -->
@@ -190,7 +180,8 @@
   <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  const observer = new IntersectionObserver(
+  // Existing animation for generic screenshot cards (kept for future use)
+  const screenshotObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -202,8 +193,46 @@
   );
 
   document.querySelectorAll(".screenshot-card").forEach((card) => {
-    observer.observe(card);
+    screenshotObserver.observe(card);
   });
+
+  // New: dynamic, scroll-driven fade for phone mockups
+  (function () {
+    const group = document.getElementById("phone-group");
+    if (!group) return;
+    const phones = Array.from(group.querySelectorAll(".phone-mockup"));
+
+    // Create thresholds for smooth updates
+    const thresholds = Array.from({ length: 101 }, (_, i) => i / 100);
+
+    const interp = (a, b, t) => a + (b - a) * t;
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const r = entry.intersectionRatio; // 0..1 how much of the group is visible
+
+        phones.forEach((phone, idx) => {
+          // Stagger start for each phone so they fade one after another as the group comes into view
+          const offset = idx * 0.25; // left:0, middle:0.25, right:0.5
+          const span = 0.5; // how much intersectionRatio is used for each phone fade
+          let t = (r - offset) / span;
+          t = Math.max(0, Math.min(1, t));
+
+          // Apply opacity
+          phone.style.opacity = String(t);
+
+          // Interpolate shadow from deep (hidden) to soft (visible)
+          const y = interp(30, 8, t);
+          const blur = interp(60, 20, t);
+          const alpha = interp(0.85, 0.45, t);
+          phone.style.boxShadow = `0 ${y}px ${blur}px rgba(0,0,0,${alpha})`;
+        });
+      });
+    }, { threshold: thresholds });
+
+    obs.observe(group);
+  })();
 </script>
+
 </body>
 </html>

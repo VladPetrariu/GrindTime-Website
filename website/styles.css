@@ -1,18 +1,31 @@
 /* Custom styles moved here so they can be included in a Tailwind build pipeline */
 .screenshot-card {
+  /* Fade in without movement so screenshots appear from the shadow */
   opacity: 0;
-  transform: translateY(40px) rotate(-10deg);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: none;
+  transition: opacity 1.6s cubic-bezier(.2,.8,.2,1);
 }
 .screenshot-card.in-view {
   opacity: 1;
-  transform: translateY(0) rotate(0deg);
 }
 
 /* Phone mockup helpers */
+/* Phone mockup helpers */
 .phone-mockup {
-  cursor: pointer; /* indicates user can click/replace */
+  cursor: pointer;
+  /* Start 'in the shadow' and fade into a softer shadow while remaining stationary */
+  opacity: 0;
+  transform: none;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.85);
+  transition: opacity 1.8s cubic-bezier(.2,.8,.2,1), box-shadow 1.8s cubic-bezier(.2,.8,.2,1);
 }
+
+.phone-mockup.in-view {
+  opacity: 1;
+  /* settle into a softer shadow once visible */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+}
+
 .phone-mockup img.replaceable {
   width: 100%;
   height: 100%;
@@ -20,8 +33,82 @@
   display: block;
 }
 
+
 /* Caption below each phone mockup */
 .phone-caption {
   line-height: 1;
   font-weight: 500;
 }
+
+/* Theme override: map site to dark black / grey / purple */
+:root {
+  --bg: #000000; /* pure black */
+  --surface: #07070a; /* very dark grey */
+  --panel: #0f0f14; /* slightly lighter */
+  --muted-text: #9aa0b3; /* grey for secondary text */
+  --text: #e6e6f4; /* primary text (light grey with a hint of purple) */
+  --accent: #7c3aed; /* purple-600 */
+  --accent-2: #a78bfa; /* purple-400 */
+  --muted-shadow: rgba(0,0,0,0.6);
+}
+
+/* Base backgrounds and text */
+body, .min-h-screen {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%) !important;
+  color: var(--text) !important;
+}
+
+/* Neutral slate -> surface shades */
+[class*="bg-slate"], [class*="bg-slate-"] {
+  background-color: var(--surface) !important;
+}
+[class*="border-slate"], [class*="border-slate-"] {
+  border-color: rgba(255,255,255,0.04) !important;
+}
+[class*="text-slate"], [class*="text-slate-"] {
+  color: var(--muted-text) !important;
+}
+
+/* Replace emerald/sky accents with purple */
+[class*="text-emerald"], .text-emerald-400, .text-emerald-300 {
+  color: var(--accent-2) !important;
+}
+[class*="bg-emerald"], [class*="bg-emerald-"] {
+  background-color: var(--accent) !important;
+  color: var(--bg) !important;
+}
+[class*="border-emerald"], [class*="border-emerald-"] {
+  border-color: rgba(167,139,250,0.25) !important; /* semi-transparent purple */
+}
+
+/* Shadow accents */
+[class*="shadow-emerald"], [class*="shadow-emerald-"] {
+  /* provide a purple-tinted shadow where used */
+  box-shadow: 0 10px 30px rgba(124,58,237,0.12) !important;
+}
+
+/* Buttons & interactive elements fall back to accent on hover when they rely on emerald */
+a[class*="bg-emerald"], button[class*="bg-emerald"] {
+  background-color: var(--accent) !important;
+}
+a[class*="bg-emerald"]:hover, button[class*="bg-emerald"]:hover {
+  background-color: color-mix(in srgb, var(--accent) 70%, var(--accent-2) 30%) !important;
+}
+
+/* Make input borders subtler */
+input, textarea, select {
+  border-color: rgba(255,255,255,0.06) !important;
+  background-color: rgba(255,255,255,0.02) !important;
+  color: var(--text) !important;
+}
+
+/* Ensure phone mockups respect the new palette via box-shadow fallback */
+.phone-mockup {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.85) !important;
+}
+
+/* Small helper for captions */
+.phone-caption { color: var(--muted-text) !important; }
+
+/* Darken any bright images slightly for consistent look */
+.phone-mockup img { filter: contrast(0.98) saturate(0.9); }
