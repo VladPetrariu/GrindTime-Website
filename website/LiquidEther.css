@@ -1,0 +1,25 @@
+.liquid-ether-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.liquid-ether-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.liquid-ether-content {
+  position: relative;
+  z-index: 1;
+}
+
+.liquid-ether-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}

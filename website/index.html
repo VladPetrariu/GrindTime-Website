@@ -7,6 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom styles moved to styles.css for Tailwind build pipeline -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="LiquidEther.css">
+  <link rel="stylesheet" href="GradualBlur.css">
 
 </head>
 <body class="bg-slate-950 text-slate-50">
@@ -29,7 +31,11 @@
 
     <!-- HERO -->
     <main class="flex-1">
-      <section class="max-w-6xl mx-auto px-4 pt-4 pb-20 grid md:grid-cols-2 gap-12 items-center">
+      <section class="liquid-ether-hero">
+        <div class="liquid-ether-layer" aria-hidden="true">
+          <div id="liquid-ether" class="liquid-ether-container"></div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 pt-4 pb-20 grid md:grid-cols-2 gap-12 items-center liquid-ether-content">
         <div class="space-y-6">
           <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-400/30 bg-emerald-500/5 text-xs uppercase tracking-[0.2em] text-emerald-300">
             Focus • Track • Improve
@@ -42,12 +48,9 @@
           </p>
           <div class="flex flex-wrap gap-4">
             <!-- Replace href with real App Store link -->
-            <a id="download" href="https://apps.apple.com" target="_blank"
+            <a id="download" href="#waitlist"
                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold shadow-lg shadow-emerald-500/30">
-              <span>Download on the App Store</span>
-            </a>
-            <a href="#waitlist" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-700 text-sm text-slate-200 hover:bg-slate-900/60">
-              Join early access
+              <span>Join early access</span>
             </a>
           </div>
           <div class="flex flex-wrap gap-6 text-xs text-slate-400">
@@ -80,6 +83,7 @@
             </p>
           </div>
         </div>
+        </div>
       </section>
 
       <!-- FEATURES -->
@@ -111,7 +115,7 @@
   <div id="phone-group" class="flex items-start justify-center gap-10 md:gap-16 lg:gap-24 mb-6 max-w-5xl mx-auto px-4">
           <div class="flex flex-col items-center">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
-              <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center">
+              <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="/images/grindtime-profile.png" alt="Placeholder 1" class="w-full h-full object-cover replaceable" data-slot="1" />
               </div>
             </div>
@@ -120,7 +124,7 @@
 
           <div class="flex flex-col items-center">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
-              <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center">
+              <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="/images/grindtime-feed.png" alt="Placeholder 2" class="w-full h-full object-cover replaceable" data-slot="2" />
               </div>
             </div>
@@ -129,7 +133,7 @@
 
           <div class="flex flex-col items-center">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
-              <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center">
+              <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="/images/grindtime-heatmap.png" alt="Placeholder 3" class="w-full h-full object-cover replaceable" data-slot="3" />
               </div>
             </div>
@@ -196,43 +200,60 @@
     screenshotObserver.observe(card);
   });
 
-  // New: dynamic, scroll-driven fade for phone mockups
-  (function () {
-    const group = document.getElementById("phone-group");
-    if (!group) return;
-    const phones = Array.from(group.querySelectorAll(".phone-mockup"));
-
-    // Create thresholds for smooth updates
-    const thresholds = Array.from({ length: 101 }, (_, i) => i / 100);
-
-    const interp = (a, b, t) => a + (b - a) * t;
-
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const r = entry.intersectionRatio; // 0..1 how much of the group is visible
-
-        phones.forEach((phone, idx) => {
-          // Stagger start for each phone so they fade one after another as the group comes into view
-          const offset = idx * 0.25; // left:0, middle:0.25, right:0.5
-          const span = 0.5; // how much intersectionRatio is used for each phone fade
-          let t = (r - offset) / span;
-          t = Math.max(0, Math.min(1, t));
-
-          // Apply opacity
-          phone.style.opacity = String(t);
-
-          // Interpolate shadow from deep (hidden) to soft (visible)
-          const y = interp(30, 8, t);
-          const blur = interp(60, 20, t);
-          const alpha = interp(0.85, 0.45, t);
-          phone.style.boxShadow = `0 ${y}px ${blur}px rgba(0,0,0,${alpha})`;
-        });
-      });
-    }, { threshold: thresholds });
-
-    obs.observe(group);
-  })();
 </script>
+  <script type="module">
+    import('./LiquidEther.js').then(({ default: LiquidEther }) => {
+      const container = document.getElementById('liquid-ether');
+      if (!container) return;
+      const ether = new LiquidEther(container, {
+        colors: ['#5227FF', '#FF9FFC', '#B19EEF'],
+        mouseForce: 20,
+        cursorSize: 100,
+        isViscous: false,
+        viscous: 30,
+        iterationsViscous: 32,
+        iterationsPoisson: 32,
+        resolution: 0.5,
+        isBounce: false,
+        autoDemo: true,
+        autoSpeed: 0.5,
+        autoIntensity: 2.2,
+        takeoverDuration: 0.25,
+        autoResumeDelay: 3000,
+        autoRampDuration: 0.6
+      });
+
+      window.addEventListener('beforeunload', () => ether.destroy());
+    });
+
+    import('./GradualBlur.js').then(({ default: GradualBlur }) => {
+      const blurTargets = document.querySelectorAll('.phone-screen');
+      const blurInstances = [];
+      blurTargets.forEach(target => {
+        blurInstances.push(
+          new GradualBlur(target, {
+            target: 'parent',
+            position: 'bottom',
+            height: '6rem',
+            strength: 2,
+            divCount: 5,
+            curve: 'bezier',
+            exponential: true,
+            opacity: 1,
+            animated: 'scroll',
+            duration: '0.35s',
+            easing: 'ease-out'
+          })
+        );
+      });
+
+      if (blurInstances.length) {
+        window.addEventListener('beforeunload', () => {
+          blurInstances.forEach(instance => instance.destroy());
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>

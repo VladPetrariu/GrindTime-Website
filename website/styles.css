@@ -1,4 +1,7 @@
 /* Custom styles moved here so they can be included in a Tailwind build pipeline */
+html {
+  scroll-behavior: smooth;
+}
 .screenshot-card {
   /* Fade in without movement so screenshots appear from the shadow */
   opacity: 0;
@@ -13,15 +16,11 @@
 /* Phone mockup helpers */
 .phone-mockup {
   cursor: pointer;
-  /* Start 'in the shadow' and fade into a softer shadow while remaining stationary */
-  opacity: 0;
   transform: none;
   box-shadow: 0 30px 60px rgba(0,0,0,0.85);
-  transition: opacity 1.8s cubic-bezier(.2,.8,.2,1), box-shadow 1.8s cubic-bezier(.2,.8,.2,1);
 }
 
 .phone-mockup.in-view {
-  opacity: 1;
   /* settle into a softer shadow once visible */
   box-shadow: 0 8px 20px rgba(0,0,0,0.45);
 }
