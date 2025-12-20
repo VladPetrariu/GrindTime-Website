@@ -39,6 +39,23 @@ html {
   font-weight: 500;
 }
 
+/* Scroll-synced reveal for phone previews */
+.phone-reveal {
+  --reveal: 0;
+  opacity: var(--reveal);
+  transform: translateY(calc((1 - var(--reveal)) * 32px))
+    scale(calc(0.92 + 0.08 * var(--reveal)));
+  transform-origin: center bottom;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Theme override: map site to dark black / grey / purple */
 :root {
   --bg: #000000; /* pure black */

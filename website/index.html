@@ -112,7 +112,7 @@
         </div>
         <!-- Phone mockups: wider spacing and captions. Replace the <img> src inside each .phone-mockup when ready -->
   <div id="phone-group" class="flex items-start justify-center gap-10 md:gap-16 lg:gap-24 mb-6 max-w-5xl mx-auto px-4">
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center phone-reveal">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="/images/grindtime-profile.png" alt="Placeholder 1" class="w-full h-full object-cover replaceable" data-slot="1" />
@@ -121,7 +121,7 @@
             <div class="phone-caption mt-3 text-center text-sm text-slate-300">Social Feed</div>
           </div>
 
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center phone-reveal">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="/images/grindtime-feed.png" alt="Placeholder 2" class="w-full h-full object-cover replaceable" data-slot="2" />
@@ -130,7 +130,7 @@
             <div class="phone-caption mt-3 text-center text-sm text-slate-300">Dynamic Timer</div>
           </div>
 
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center phone-reveal">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="/images/grindtime-heatmap.png" alt="Placeholder 3" class="w-full h-full object-cover replaceable" data-slot="3" />
@@ -198,6 +198,49 @@
   document.querySelectorAll(".screenshot-card").forEach((card) => {
     screenshotObserver.observe(card);
   });
+
+  (() => {
+    const group = document.getElementById("phone-group");
+    if (!group) return;
+    const items = Array.from(group.querySelectorAll(".phone-reveal"));
+    if (!items.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      items.forEach((item) => item.style.setProperty("--reveal", "1"));
+      return;
+    }
+
+    const clamp = (value, min = 0, max = 1) =>
+      Math.min(max, Math.max(min, value));
+    const stagger = 0.18;
+    const totalStagger = stagger * (items.length - 1);
+
+    const update = () => {
+      const rect = group.getBoundingClientRect();
+      const viewH = window.innerHeight || document.documentElement.clientHeight;
+      const start = viewH * 0.85;
+      const end = viewH * 0.2;
+      const progress = clamp((start - rect.top) / (start - end));
+
+      items.forEach((item, index) => {
+        const local = clamp((progress - index * stagger) / (1 - totalStagger));
+        item.style.setProperty("--reveal", local.toFixed(3));
+      });
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update);
+  })();
 
 </script>
   <script type="module">
