@@ -8,7 +8,6 @@
   <!-- Custom styles moved to styles.css for Tailwind build pipeline -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="LiquidEther.css">
-  <link rel="stylesheet" href="GradualBlur.css">
 
 </head>
 <body class="bg-slate-950 text-slate-50">
@@ -67,7 +66,7 @@
 
         <!-- APP MOCKUP -->
         <div class="relative">
-          <div class="absolute -top-8 -left-4 h-40 w-40 bg-emerald-500/10 blur-3xl rounded-full"></div>
+          <div class="absolute -top-8 -left-4 h-40 w-40 ether-blob blur-3xl rounded-full"></div>
           <div class="absolute -bottom-10 -right-4 h-40 w-40 bg-sky-500/10 blur-3xl rounded-full"></div>
           <div class="relative mx-auto max-w-xs rounded-[2.5rem] border border-slate-700 bg-slate-900/80 shadow-2xl shadow-emerald-500/20 p-3">
             <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex flex-col">
@@ -226,33 +225,6 @@
       window.addEventListener('beforeunload', () => ether.destroy());
     });
 
-    import('./GradualBlur.js').then(({ default: GradualBlur }) => {
-      const blurTargets = document.querySelectorAll('.phone-screen');
-      const blurInstances = [];
-      blurTargets.forEach(target => {
-        blurInstances.push(
-          new GradualBlur(target, {
-            target: 'parent',
-            position: 'bottom',
-            height: '6rem',
-            strength: 2,
-            divCount: 5,
-            curve: 'bezier',
-            exponential: true,
-            opacity: 1,
-            animated: 'scroll',
-            duration: '0.35s',
-            easing: 'ease-out'
-          })
-        );
-      });
-
-      if (blurInstances.length) {
-        window.addEventListener('beforeunload', () => {
-          blurInstances.forEach(instance => instance.destroy());
-        });
-      }
-    });
   </script>
 
 </body>
