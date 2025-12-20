@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GrindTime – Turn Focus Into a Habit</title>
+  <title>GrindTime</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom styles moved to styles.css for Tailwind build pipeline -->
@@ -23,7 +23,7 @@
         <a href="#screenshots" class="hover:text-emerald-300 transition">Screenshots</a>
         <a href="#faq" class="hover:text-emerald-300 transition">FAQ</a>
       </div>
-      <a href="#download" class="text-sm px-4 py-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 hover:bg-emerald-500/20 transition">
+      <a href="#waitlist" class="text-sm px-4 py-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 hover:bg-emerald-500/20 transition">
         Get the app
       </a>
     </nav>
@@ -71,7 +71,7 @@
           <div class="relative mx-auto max-w-xs rounded-[2.5rem] border border-slate-700 bg-slate-900/80 shadow-2xl shadow-emerald-500/20 p-3">
             <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex flex-col">
               <!-- Replace src with real screenshot -->
-              <img src="/images/grindtime-profile.png" alt="GrindTime profile screen"
+              <img src="images/IMG_3355.png" alt="GrindTime profile screen"
                     class="h-full w-full object-cover" />
 
             </div>
@@ -115,7 +115,7 @@
           <div class="flex flex-col items-center phone-reveal">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
-                <img src="/images/grindtime-profile.png" alt="Placeholder 1" class="w-full h-full object-cover replaceable" data-slot="1" />
+                <img src="images/IMG_3358.png" alt="Social feed screen" class="w-full h-full object-cover replaceable" data-slot="1" />
               </div>
             </div>
             <div class="phone-caption mt-3 text-center text-sm text-slate-300">Social Feed</div>
@@ -124,7 +124,7 @@
           <div class="flex flex-col items-center phone-reveal">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
-                <img src="/images/grindtime-feed.png" alt="Placeholder 2" class="w-full h-full object-cover replaceable" data-slot="2" />
+                <img src="images/IMG_3359.PNG" alt="Dynamic timer screen" class="w-full h-full object-cover replaceable" data-slot="2" />
               </div>
             </div>
             <div class="phone-caption mt-3 text-center text-sm text-slate-300">Dynamic Timer</div>
@@ -133,7 +133,7 @@
           <div class="flex flex-col items-center phone-reveal">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
-                <img src="/images/grindtime-heatmap.png" alt="Placeholder 3" class="w-full h-full object-cover replaceable" data-slot="3" />
+                <img src="images/IMG_3360.png" alt="Forced study photo screen" class="w-full h-full object-cover replaceable" data-slot="3" />
               </div>
             </div>
             <div class="phone-caption mt-3 text-center text-sm text-slate-300">Forced Study Photos</div>
@@ -147,11 +147,15 @@
         <div class="space-y-4 text-sm text-slate-300">
           <details class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3">
             <summary class="cursor-pointer font-medium text-slate-100">Is GrindTime free?</summary>
-            <p class="mt-2 text-sm text-slate-300">Yes. Core tracking is free. We’re working on an optional premium tier with extra analytics and study support.</p>
+            <p class="mt-2 text-sm text-slate-300">Yes. GrindTime is fully free to use. In app purchases used to customize your experience coming soon!</p>
           </details>
           <details class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3">
             <summary class="cursor-pointer font-medium text-slate-100">Which platforms are supported?</summary>
             <p class="mt-2 text-sm text-slate-300">GrindTime is being built for iOS first. Other platforms may follow based on demand.</p>
+          </details>
+          <details class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3">
+            <summary class="cursor-pointer font-medium text-slate-100">What can I do with this app?</summary>
+            <p class="mt-2 text-sm text-slate-300">Track study habits, see where friends study, compare Grind Times.</p>
           </details>
         </div>
 
@@ -159,11 +163,16 @@
         <div id="waitlist" class="mt-10 rounded-2xl border border-emerald-500/40 bg-emerald-500/5 px-5 py-6">
           <h3 class="text-lg font-semibold mb-2">Get notified when we launch.</h3>
           <p class="text-sm text-slate-200 mb-4">Drop your email and be first in line for new features, beta invites, and launch updates.</p>
-          <form class="flex flex-col sm:flex-row gap-3">
+          <form id="waitlist-form" class="flex flex-col gap-3">
             <input type="email" required placeholder="you@example.com"
                    class="flex-1 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-700 text-sm outline-none focus:border-emerald-400">
-            <button type="submit"
-                    class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold">
+            <label class="flex items-start gap-2 text-xs text-slate-300">
+              <input id="waitlist-consent" type="checkbox" required
+                     class="mt-0.5 h-4 w-4 rounded border-slate-600 bg-slate-950/60 text-emerald-400 focus:ring-emerald-400">
+              <span>I agree to recieve emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.</span>
+            </label>
+            <button id="waitlist-submit" type="submit" disabled
+                    class="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 text-sm font-semibold opacity-50 cursor-not-allowed transition hover:bg-emerald-400 disabled:hover:bg-emerald-500">
               Join waitlist
             </button>
           </form>
@@ -178,6 +187,20 @@
         <span>Built for people who actually show up to grind.</span>
       </div>
     </footer>
+  </div>
+
+  <div id="waitlist-toast"
+       role="status"
+       aria-live="polite"
+       class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="max-w-sm rounded-2xl border border-emerald-400/40 bg-slate-900/95 px-6 py-5 text-center text-sm text-slate-100 shadow-lg shadow-emerald-500/20">
+      <p id="waitlist-toast-message" class="mb-4">Thank you for singing up! Check your email for more information</p>
+      <button id="waitlist-toast-dismiss"
+              type="button"
+              class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold">
+        Sounds good
+      </button>
+    </div>
   </div>
 
   <script>
@@ -240,6 +263,124 @@
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", update);
+  })();
+
+  (() => {
+    const waitlistForm = document.getElementById("waitlist-form");
+    const toast = document.getElementById("waitlist-toast");
+    if (!waitlistForm || !toast) return;
+
+    const toastMessage = document.getElementById("waitlist-toast-message");
+    const successMessage = "Thank you for singing up! Check your email for more information";
+    const errorMessage = "Something went wrong. Please try again.";
+    const consentText = "I agree to recieve emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.";
+    const supabaseUrl = "https://xuzbasfwaztpxmomtnfu.supabase.co";
+    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1emJhc2Z3YXp0cHhtb210bmZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYyMjA4NDAsImV4cCI6MjA4MTc5Njg0MH0.K-JprLBD_HuIyG3Do4gxRjePoq30kDdlc-65VAHLAJI";
+    const signupEndpoint = `${supabaseUrl}/functions/v1/waitlist-signup`;
+
+    const dismissButton = document.getElementById("waitlist-toast-dismiss");
+
+    const showToast = (message, isError = false) => {
+      if (toastMessage && message) {
+        toastMessage.textContent = message;
+      }
+      if (dismissButton) {
+        dismissButton.textContent = isError ? "Try again" : "Sounds good";
+      }
+      toast.classList.remove("opacity-0", "pointer-events-none");
+      toast.classList.add("opacity-100");
+    };
+
+    const hideToast = () => {
+      toast.classList.add("opacity-0", "pointer-events-none");
+      toast.classList.remove("opacity-100");
+    };
+
+    if (dismissButton) {
+      dismissButton.addEventListener("click", hideToast);
+    }
+
+    const consentCheckbox = document.getElementById("waitlist-consent");
+    const submitButton = document.getElementById("waitlist-submit");
+    let isSubmitting = false;
+
+    const setSubmitDisabled = (disabled) => {
+      if (!submitButton) return;
+      submitButton.disabled = disabled;
+      submitButton.classList.toggle("opacity-50", disabled);
+      submitButton.classList.toggle("cursor-not-allowed", disabled);
+    };
+
+    const syncConsent = () => {
+      if (!consentCheckbox || !submitButton) return;
+      setSubmitDisabled(isSubmitting || !consentCheckbox.checked);
+    };
+
+    if (consentCheckbox) {
+      consentCheckbox.addEventListener("change", syncConsent);
+      syncConsent();
+    }
+
+    waitlistForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const emailInput = waitlistForm.querySelector('input[type="email"]');
+      if (emailInput && !emailInput.checkValidity()) {
+        emailInput.reportValidity();
+        return;
+      }
+      if (consentCheckbox && !consentCheckbox.checked) {
+        consentCheckbox.reportValidity();
+        return;
+      }
+      if (supabaseUrl.includes("YOUR_PROJECT_REF") || supabaseAnonKey === "YOUR_SUPABASE_ANON_KEY") {
+        showToast("Add your Supabase URL and anon key in index.html before using the waitlist.", true);
+        return;
+      }
+
+      const email = emailInput ? emailInput.value.trim() : "";
+      if (!email) {
+        if (emailInput) emailInput.reportValidity();
+        return;
+      }
+
+      isSubmitting = true;
+      setSubmitDisabled(true);
+      if (submitButton) submitButton.textContent = "Joining...";
+
+      try {
+        const response = await fetch(signupEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${supabaseAnonKey}`,
+            "apikey": supabaseAnonKey
+          },
+          body: JSON.stringify({
+            email,
+            consent: true,
+            consent_text: consentText
+          })
+        });
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => null);
+          const serverMessage = payload && typeof payload.error === "string" ? payload.error : null;
+          showToast(serverMessage || errorMessage, true);
+          return;
+        }
+
+        showToast(successMessage);
+        waitlistForm.reset();
+        syncConsent();
+      } catch (error) {
+        console.error(error);
+        showToast(errorMessage, true);
+      } finally {
+        isSubmitting = false;
+        if (submitButton) submitButton.textContent = "Join waitlist";
+        syncConsent();
+      }
+    });
   })();
 
 </script>
