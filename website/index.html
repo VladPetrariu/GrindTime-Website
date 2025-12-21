@@ -164,12 +164,12 @@
           <h3 class="text-lg font-semibold mb-2">Get notified when we launch.</h3>
           <p class="text-sm text-slate-200 mb-4">Drop your email and be first in line for new features, beta invites, and launch updates.</p>
           <form id="waitlist-form" class="flex flex-col gap-3">
-            <input type="email" required placeholder="you@example.com"
+            <input id="waitlist-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email" autocapitalize="none" spellcheck="false"
                    class="flex-1 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-700 text-sm outline-none focus:border-emerald-400">
             <label class="flex items-start gap-2 text-xs text-slate-300">
               <input id="waitlist-consent" type="checkbox" required
                      class="mt-0.5 h-4 w-4 rounded border-slate-600 bg-slate-950/60 text-emerald-400 focus:ring-emerald-400">
-              <span>I agree to recieve emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.</span>
+              <span id="waitlist-consent-text">I agree to receive emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.</span>
             </label>
             <button id="waitlist-submit" type="submit" disabled
                     class="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 text-sm font-semibold opacity-50 cursor-not-allowed transition hover:bg-emerald-400 disabled:hover:bg-emerald-500">
@@ -194,7 +194,7 @@
        aria-live="polite"
        class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="max-w-sm rounded-2xl border border-emerald-400/40 bg-slate-900/95 px-6 py-5 text-center text-sm text-slate-100 shadow-lg shadow-emerald-500/20">
-      <p id="waitlist-toast-message" class="mb-4">Thank you for singing up! Check your email for more information</p>
+      <p id="waitlist-toast-message" class="mb-4">Thank you for signing up! Check your email for more information.</p>
       <button id="waitlist-toast-dismiss"
               type="button"
               class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold">
@@ -271,12 +271,14 @@
     if (!waitlistForm || !toast) return;
 
     const toastMessage = document.getElementById("waitlist-toast-message");
-    const successMessage = "Thank you for singing up! Check your email for more information";
+    const successMessage = "Thank you for signing up! Check your email for more information.";
     const errorMessage = "Something went wrong. Please try again.";
-    const consentText = "I agree to recieve emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.";
+    const consentTextElement = document.getElementById("waitlist-consent-text");
+    const consentText = consentTextElement
+      ? consentTextElement.textContent.trim()
+      : "I agree to receive emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.";
     const supabaseUrl = "https://xuzbasfwaztpxmomtnfu.supabase.co";
-    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1emJhc2Z3YXp0cHhtb210bmZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYyMjA4NDAsImV4cCI6MjA4MTc5Njg0MH0.K-JprLBD_HuIyG3Do4gxRjePoq30kDdlc-65VAHLAJI";
-    const signupEndpoint = `${supabaseUrl}/functions/v1/waitlist-signup`;
+    const signupEndpoint = `${supabaseUrl}/functions/v1/bright-service`;
 
     const dismissButton = document.getElementById("waitlist-toast-dismiss");
 
@@ -332,8 +334,8 @@
         consentCheckbox.reportValidity();
         return;
       }
-      if (supabaseUrl.includes("YOUR_PROJECT_REF") || supabaseAnonKey === "YOUR_SUPABASE_ANON_KEY") {
-        showToast("Add your Supabase URL and anon key in index.html before using the waitlist.", true);
+      if (supabaseUrl.includes("YOUR_PROJECT_REF")) {
+        showToast("Add your Supabase URL in index.html before using the waitlist.", true);
         return;
       }
 
@@ -348,24 +350,31 @@
       if (submitButton) submitButton.textContent = "Joining...";
 
       try {
+        const consentSource = "website";
+        const consentPage = window.location.href;
         const response = await fetch(signupEndpoint, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${supabaseAnonKey}`,
-            "apikey": supabaseAnonKey
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             email,
-            consent: true,
-            consent_text: consentText
+            consent: consentCheckbox ? consentCheckbox.checked : true,
+            consent_text: consentText,
+            consent_source: consentSource,
+            consent_page: consentPage
           })
         });
 
+        const payload = await response.json().catch(() => null);
         if (!response.ok) {
-          const payload = await response.json().catch(() => null);
           const serverMessage = payload && typeof payload.error === "string" ? payload.error : null;
           showToast(serverMessage || errorMessage, true);
+          return;
+        }
+
+        if (payload && payload.already) {
+          showToast("You already signed up!");
           return;
         }
 
