@@ -2,8 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GrindTime</title>
+  <title>GrindTime - Focus. Track. Improve.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GrindTime helps students and competitors track deep-work sessions, visualize progress, and stay accountable. Join early access for TestFlight updates." />
+  <meta name="robots" content="index, follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#07070a" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://grindtime.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GrindTime - Focus. Track. Improve." />
+  <meta property="og:description" content="Track deep-work sessions, visualize progress, and stay accountable. Join the GrindTime waitlist for TestFlight access." />
+  <meta property="og:url" content="https://grindtime.app/" />
+  <meta property="og:image" content="https://grindtime.app/images/IMG_3355.png" />
+  <meta property="og:site_name" content="GrindTime" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GrindTime - Focus. Track. Improve." />
+  <meta name="twitter:description" content="Track deep-work sessions, visualize progress, and stay accountable. Join the GrindTime waitlist for TestFlight access." />
+  <meta name="twitter:image" content="https://grindtime.app/images/IMG_3355.png" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GrindTime",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "iOS",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "url": "https://grindtime.app/"
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom styles moved to styles.css for Tailwind build pipeline -->
   <link rel="stylesheet" href="styles.css">
@@ -111,8 +143,8 @@
           <span class="text-xs text-slate-400">Swipe through the UI</span>
         </div>
         <!-- Phone mockups: wider spacing and captions. Replace the <img> src inside each .phone-mockup when ready -->
-  <div id="phone-group" class="flex items-start justify-center gap-10 md:gap-16 lg:gap-24 mb-6 max-w-5xl mx-auto px-4">
-          <div class="flex flex-col items-center phone-reveal">
+  <div id="phone-group" class="phone-scroll flex items-start justify-start sm:justify-center gap-6 sm:gap-10 md:gap-16 lg:gap-24 mb-6 max-w-5xl mx-auto px-2 sm:px-4">
+          <div class="flex flex-col items-center phone-reveal shrink-0">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="images/IMG_3358.png" alt="Social feed screen" class="w-full h-full object-cover replaceable" data-slot="1" />
@@ -121,7 +153,7 @@
             <div class="phone-caption mt-3 text-center text-sm text-slate-300">Social Feed</div>
           </div>
 
-          <div class="flex flex-col items-center phone-reveal">
+          <div class="flex flex-col items-center phone-reveal shrink-0">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="images/IMG_3359.PNG" alt="Dynamic timer screen" class="w-full h-full object-cover replaceable" data-slot="2" />
@@ -130,7 +162,7 @@
             <div class="phone-caption mt-3 text-center text-sm text-slate-300">Dynamic Timer</div>
           </div>
 
-          <div class="flex flex-col items-center phone-reveal">
+          <div class="flex flex-col items-center phone-reveal shrink-0">
             <div class="phone-mockup rounded-[2.5rem] border border-slate-700 bg-slate-900/80 p-2 w-40 sm:w-44 md:w-48">
               <div class="aspect-[9/19] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center phone-screen">
                 <img src="images/IMG_3360.png" alt="Forced study photo screen" class="w-full h-full object-cover replaceable" data-slot="3" />
@@ -169,7 +201,11 @@
             <label class="flex items-start gap-2 text-xs text-slate-300">
               <input id="waitlist-consent" type="checkbox" required
                      class="mt-0.5 h-4 w-4 rounded border-slate-600 bg-slate-950/60 text-emerald-400 focus:ring-emerald-400">
-              <span id="waitlist-consent-text">I agree to receive emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.</span>
+              <span id="waitlist-consent-text">
+                I agree to receive emails about GrindTime's launch and TestFlight access. I can unsubscribe at any time.
+                Read the <a href="privacy.html" class="underline hover:text-emerald-300 transition">Privacy Policy</a> and
+                <a href="terms.html" class="underline hover:text-emerald-300 transition">Terms</a>.
+              </span>
             </label>
             <button id="waitlist-submit" type="submit" disabled
                     class="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 text-sm font-semibold opacity-50 cursor-not-allowed transition hover:bg-emerald-400 disabled:hover:bg-emerald-500">
@@ -182,9 +218,16 @@
 
     <!-- FOOTER -->
     <footer class="border-t border-slate-800/80 py-6 mt-auto">
-      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <span>© <span id="year"></span> GrindTime. All rights reserved.</span>
-        <span>Built for people who actually show up to grind.</span>
+      <div class="max-w-6xl mx-auto px-4 flex flex-col gap-3 text-xs text-slate-500 text-center">
+        <span class="text-slate-400">Built for people who actually show up to grind.</span>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <span>© <span id="year"></span> GrindTime. All rights reserved.</span>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="privacy.html" class="hover:text-emerald-300 transition">Privacy</a>
+            <a href="terms.html" class="hover:text-emerald-300 transition">Terms</a>
+            <a href="contact.html" class="hover:text-emerald-300 transition">Contact</a>
+          </div>
+        </div>
       </div>
     </footer>
   </div>

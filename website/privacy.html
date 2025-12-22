@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Privacy Policy - GrindTime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Learn how GrindTime collects and uses data for the waitlist and TestFlight updates." />
+  <meta name="robots" content="index, follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#07070a" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://grindtime.app/privacy.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Privacy Policy - GrindTime" />
+  <meta property="og:description" content="Learn how GrindTime collects and uses data for the waitlist and TestFlight updates." />
+  <meta property="og:url" content="https://grindtime.app/privacy.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="LiquidEther.css">
+</head>
+<body class="bg-slate-950 text-slate-50">
+  <div class="min-h-screen flex flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <nav class="max-w-6xl mx-auto w-full flex items-center justify-between px-4 py-6">
+      <a href="index.html" class="font-semibold tracking-tight text-lg">GrindTime</a>
+      <a href="index.html#waitlist" class="text-sm px-4 py-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 hover:bg-emerald-500/20 transition">
+        Join waitlist
+      </a>
+    </nav>
+
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 pb-16">
+      <div class="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8 mb-8">
+        <div class="absolute -top-16 -right-12 h-40 w-40 ether-blob blur-3xl"></div>
+        <div class="absolute -bottom-16 -left-10 h-32 w-32 bg-emerald-500/10 blur-3xl"></div>
+        <div class="relative space-y-3">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-400/30 bg-emerald-500/5 text-xs uppercase tracking-[0.2em] text-emerald-300">
+            Privacy
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-semibold">Privacy Policy</h1>
+          <p class="text-sm text-slate-300 max-w-2xl">
+            GrindTime collects only what we need to run the waitlist and send TestFlight updates.
+            You stay in control and can unsubscribe at any time.
+          </p>
+          <p class="text-xs text-slate-400">Last updated: 2025-12-21</p>
+        </div>
+      </div>
+
+      <div class="grid gap-4">
+        <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <h2 class="text-base font-semibold text-slate-100 mb-2">Information we collect</h2>
+          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-300">
+            <li>Email address and consent details when you join the waitlist.</li>
+            <li>Basic request metadata such as IP address, user agent, and the page you signed up from.</li>
+          </ul>
+        </section>
+
+        <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <h2 class="text-base font-semibold text-slate-100 mb-2">How we use your information</h2>
+          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-300">
+            <li>Send waitlist updates, TestFlight access, and launch announcements.</li>
+            <li>Maintain proof of consent and prevent duplicate signups.</li>
+            <li>Keep the waitlist secure and reliable.</li>
+          </ul>
+        </section>
+
+        <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <h2 class="text-base font-semibold text-slate-100 mb-2">Sharing</h2>
+          <p class="text-sm text-slate-300">
+            We do not sell your data. We use trusted providers to operate the waitlist and send emails,
+            including Supabase (database) and Resend (email delivery).
+          </p>
+        </section>
+
+        <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <h2 class="text-base font-semibold text-slate-100 mb-2">Retention and your choices</h2>
+          <p class="text-sm text-slate-300">
+            We keep waitlist data until you unsubscribe or request deletion. Every email includes an unsubscribe link.
+          </p>
+        </section>
+
+        <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <h2 class="text-base font-semibold text-slate-100 mb-2">Contact</h2>
+          <p class="text-sm text-slate-300">
+            Questions about privacy? Email
+            <a href="mailto:support@grindtime.app" class="text-slate-200 hover:text-emerald-300 transition">support@grindtime.app</a>.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="border-t border-slate-800/80 py-6 mt-auto">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col gap-3 text-xs text-slate-500 text-center">
+        <span class="text-slate-400">Built for people who actually show up to grind.</span>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <span>© <span id="year"></span> GrindTime. All rights reserved.</span>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="privacy.html" class="hover:text-emerald-300 transition">Privacy</a>
+            <a href="terms.html" class="hover:text-emerald-300 transition">Terms</a>
+            <a href="contact.html" class="hover:text-emerald-300 transition">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -49,6 +49,29 @@ html {
   will-change: opacity, transform;
 }
 
+.phone-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.phone-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-scroll .phone-reveal {
+  scroll-snap-align: center;
+}
+
+@media (min-width: 640px) {
+  .phone-scroll {
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .phone-reveal {
     opacity: 1;
