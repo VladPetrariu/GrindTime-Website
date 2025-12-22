@@ -414,8 +414,12 @@
 
         const payload = await response.json().catch(() => null);
         if (!response.ok) {
-          const serverMessage = payload && typeof payload.error === "string" ? payload.error : null;
-          showToast(serverMessage || errorMessage, true);
+          if (payload && typeof payload.error === "string") {
+            console.error("Waitlist signup error:", payload.error);
+          } else {
+            console.error("Waitlist signup error:", payload);
+          }
+          showToast(errorMessage, true);
           return;
         }
 
