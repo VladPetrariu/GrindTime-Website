@@ -1,9 +1,9 @@
 # GrindTime-Website
 
-###Link: https://www.grindtime.app/
+### Link: https://www.grindtime.app/
 
 
-##Preview:
+## Preview:
 
 <img width="1512" height="905" alt="Screenshot 2026-03-25 at 2 37 46 AM" src="https://github.com/user-attachments/assets/7e15bf01-4ae8-486a-9e75-9896908bb499" />
 
