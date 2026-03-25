@@ -1,6 +1,7 @@
 # GrindTime-Website
 
-### Link: https://www.grindtime.app/
+### Link: 
+https://www.grindtime.app/
 
 
 ## Preview:
